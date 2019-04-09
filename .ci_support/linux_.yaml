@@ -1,7 +1,7 @@
 channel_sources:
 - conda-forge,defaults
 channel_targets:
-- conda-forge main
+- flatsurf main
 cxx_compiler:
 - gxx
 cxx_compiler_version:
