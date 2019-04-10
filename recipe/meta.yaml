@@ -1,18 +1,23 @@
 {% set name = "E-ANTIC" %}
-{% set version = "0.1.2" %}
+{% set version = environ.get('GIT_DESCRIBE_TAG')|string %}
+{% set build_number = (environ.get('GIT_DESCRIBE_NUMBER')|int + 1000)|string %}
+{% set build_string = "master_" + build_number %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: http://www.labri.fr/perso/vdelecro/{{ name | lower }}/{{ name | lower }}-{{ version }}.tar.gz
-  sha256: 47d30a860fe8153c5f8acea9f9cbfa12319689e54086616c9fd07f17400c153e
+  git_url: https://github.com/videlec/e-antic.git
+  git_rev: 6eaccdf089fa1ef693c9d56737c0fa24b1d06a2f
 
 build:
-  number: 0
+  number: {{ build_number }}
+  string: {{ build_string }}
   # dependencies libflint and arb are not available for Windows on conda-forge
   skip: True  # [win]
+  # compiler(cxx) is clang4 on OSX which lacks some C++ features
+  skip: True  # [osx]
   run_exports:
   # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
   - {{ pin_subpackage("e-antic") }}
@@ -28,6 +33,7 @@ requirements:
     # (https://github.com/wbhart/antic/issues/31,) E-ANTIC ships the relevant
     # parts of ANTIC.
     # - antic
+    - boost-cpp
     - gmp
     - arb
     - libflint 2.5.*

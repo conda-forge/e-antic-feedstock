@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 if [ "$(uname)" == "Darwin" ]; then
-    CXXFLAGS="$CXXFLAGS -fno-common"
+    export CXXFLAGS="$CXXFLAGS -fno-common"
 fi
 
-./configure --prefix="$PREFIX"
+./bootstrap.sh
+./configure --prefix="$PREFIX" || (cat config.log && false)
 
 make -j${CPU_COUNT}
 make check
