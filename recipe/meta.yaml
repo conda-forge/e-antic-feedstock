@@ -9,7 +9,7 @@ package:
 
 source:
   git_url: https://github.com/saraedum/e-antic.git
-  git_rev: 42d7dc0e5172cafd0c85c3ea95befc710261808e
+  git_rev: 1edca4ed9c88cb39037066f0e51c04073948e49a
 
 build:
   number: {{ build_number }}
