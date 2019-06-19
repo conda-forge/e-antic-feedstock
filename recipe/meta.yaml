@@ -9,7 +9,7 @@ package:
 
 source:
   git_url: https://github.com/videlec/e-antic.git
-  git_rev: 1edca4ed9c88cb39037066f0e51c04073948e49a
+  git_rev: becddc45a37643e297ee6c9a16ea13653d120229
 
 build:
   number: {{ build_number }}
