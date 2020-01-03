@@ -22,6 +22,7 @@ requirements:
   build:
     - libtool
     - automake
+    - make
     - {{ compiler('cxx') }}
   host:
     # E-ANTIC depends on antic; since antic has never been released officially
