@@ -10,7 +10,7 @@ source:
   sha256: b4cade24a0ff20945b4ed6a18f907731f0a4091f2c09f0f88878306469fe6b9c
 
 build:
-  number: 0
+  number: 1
   # dependencies libflint and arb are not available for Windows on conda-forge
   skip: True  # [win]
   run_exports:
