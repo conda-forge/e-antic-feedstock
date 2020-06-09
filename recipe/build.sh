@@ -7,5 +7,5 @@ fi
 ./configure --prefix="$PREFIX"
 
 make -j${CPU_COUNT}
-make check
+make check || (cat test-suite.log; false)
 make install
