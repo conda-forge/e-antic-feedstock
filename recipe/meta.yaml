@@ -31,7 +31,7 @@ requirements:
     # - antic
     - gmp
     - arb
-    - libflint 2.5.*
+    - libflint
 
 test:
   commands:
