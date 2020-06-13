@@ -9,7 +9,6 @@ fi
 if [[ "$target_platform" == win* ]]; then
     cp $PREFIX/lib/gmp.lib $PREFIX/lib/gmpxx.lib
     CXXFLAGS="$CXXFLAGS -std=c++14"
-    CPPFLAGS="$CPPFLAGS -std=c++14"
 fi
 
 set +x
