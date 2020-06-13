@@ -2,11 +2,11 @@
 
 set -x
 
-if [ "$target_platform" == osx* ]; then
+if [[ "$target_platform" == osx* ]]; then
     CXXFLAGS="$CXXFLAGS -fno-common"
 fi
 
-if [ "$target_platform" == win* ]; then
+if [[ "$target_platform" == win* ]]; then
     cp $PREFIX/lib/gmp.lib $PREFIX/lib/gmpxx.lib
     CXXFLAGS="$CXXFLAGS -std=c++14"
     CPPFLAGS="$CPPFLAGS -std=c++14"
