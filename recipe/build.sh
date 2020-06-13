@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-if [ "$(uname)" == "Darwin" ]; then
+if [ "$target_platform" == osx* ]; then
     CXXFLAGS="$CXXFLAGS -fno-common"
 fi
 
 ./configure --prefix="$PREFIX"
+[[ "$target_platform" == "win-64" ]] && patch_libtool
 
 make -j${CPU_COUNT}
 make check || (cat test-suite.log; false)
