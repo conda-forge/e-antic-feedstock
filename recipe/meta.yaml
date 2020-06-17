@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  # dependencies libflint and arb are not available for Windows on conda-forge
+  # Upstream doesn't support MSVC yet.
   skip: true  # [win]
   run_exports:
   # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
@@ -20,18 +20,20 @@ build:
 
 requirements:
   build:
-    - libtool
-    - automake
-    - make
+    - libtool   # [unix]
+    - automake  # [unix]
+    - make      # [unix]
+    - autotools_clang_conda  # [win]
     - {{ compiler('cxx') }}
   host:
     # E-ANTIC depends on antic; since antic has never been released officially
     # (https://github.com/wbhart/antic/issues/31,) E-ANTIC ships the relevant
     # parts of ANTIC.
     # - antic
-    - gmp
+    - gmp       # [unix]
+    - mpir      # [win]
     - arb
-    - libflint 2.5.*
+    - libflint
 
 test:
   commands:

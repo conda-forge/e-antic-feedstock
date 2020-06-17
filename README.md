@@ -3,7 +3,7 @@ About e-antic
 
 Home: https://github.com/videlec/e-antic
 
-Package license: GPL-3.0
+Package license: LGPL-3.0-or-later
 
 Feedstock license: BSD 3-Clause
 
