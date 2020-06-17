@@ -11,7 +11,8 @@ source:
 
 build:
   number: 0
-  skip: true  # [win and vc<14]
+  # Upstream doesn't support MSVC yet.
+  skip: true  # [win]
   run_exports:
   # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
     - {{ pin_subpackage("e-antic") }}
