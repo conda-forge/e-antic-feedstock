@@ -1,5 +1,5 @@
 arb:
-- '2.17'
+- '2.18'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
