@@ -5,9 +5,11 @@ Home: https://github.com/videlec/e-antic
 
 Package license: LGPL-3.0-or-later
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/e-antic-feedstock/blob/master/LICENSE.txt)
 
 Summary: embedded algebraic number fields
+
+Development: https://github.com/videlec/e-antic
 
 E-ANTIC is a C/C++ library to deal with real embedded number fields built
 on top of ANTIC. Its aim is to have as fast as possible exact arithmetic
