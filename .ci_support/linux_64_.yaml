@@ -1,5 +1,7 @@
 arb:
 - '2.18'
+cdt_name:
+- cos6
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -7,13 +9,16 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '7'
+- '9'
 docker_image:
-- condaforge/linux-anvil-comp7
+- quay.io/condaforge/linux-anvil-comp7
 gmp:
 - '6'
-libflint:
-- '2.6'
 pin_run_as_build:
   gmp:
     max_pin: x
+target_platform:
+- linux-64
+zip_keys:
+- - cdt_name
+  - docker_image

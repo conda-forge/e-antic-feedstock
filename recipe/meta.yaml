@@ -1,5 +1,5 @@
 {% set name = "E-ANTIC" %}
-{% set version = "0.1.7" %}
+{% set version = "0.1.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: http://www.labri.fr/perso/vdelecro/{{ name | lower }}/{{ name | lower }}-{{ version }}.tar.gz
-  sha256: 031a7702296b41a76b17ea9fbca184ac6ffae539d7ed0bdd987c0db1ab825f0a
+  sha256: d8b6c18107756db86c7c4ca1593364e0ba9b4ad125910b45afd7ad5823d7100c
 
 build:
-  number: 1
+  number: 0
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
   run_exports:
