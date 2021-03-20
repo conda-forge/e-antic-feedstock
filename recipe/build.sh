@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
 set -x
 
@@ -17,5 +19,7 @@ set +x
 [[ "$target_platform" == "win-64" ]] && patch_libtool
 
 make -j${CPU_COUNT}
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
 make check || (cat test-suite.log; false)
+fi
 make install
