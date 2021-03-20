@@ -24,6 +24,7 @@ requirements:
     - automake  # [unix]
     - make      # [unix]
     - autotools_clang_conda  # [win]
+    - gnuconfig  # [unix]
     - {{ compiler('cxx') }}
   host:
     # E-ANTIC depends on antic; since antic has never been released officially
