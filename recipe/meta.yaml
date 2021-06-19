@@ -59,6 +59,13 @@ outputs:
   - name: pyeantic
     script: build-pyeantic.sh
     requirements:
+      build:
+        - libtool   # [unix]
+        - automake  # [unix]
+        - make      # [unix]
+        - autotools_clang_conda  # [win]
+        - gnuconfig  # [unix]
+        - {{ compiler('cxx') }}
       host:
         - boost-cpp
         - python

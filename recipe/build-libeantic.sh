@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/gnuconfig/config.* .
-
 set -x
 
 if [[ "$target_platform" == osx* ]]; then
@@ -16,6 +13,9 @@ fi
 set +x
 
 cd libeantic
+
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
 ./configure --prefix="$PREFIX" --without-benchmark --without-byexample --without-version-script || (cat config.log; false)
 [[ "$target_platform" == "win-64" ]] && patch_libtool
