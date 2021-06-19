@@ -15,7 +15,7 @@ fi
 
 set +x
 
-./configure --prefix="$PREFIX" || (cat config.log; false)
+./configure --prefix="$PREFIX" --without-benchmark --without-byexample --without-version-script --without-doc || (cat config.log; false)
 [[ "$target_platform" == "win-64" ]] && patch_libtool
 
 make -j${CPU_COUNT}
