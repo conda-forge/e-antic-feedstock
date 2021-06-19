@@ -13,33 +13,58 @@ build:
   number: 0
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
-  run_exports:
-  # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
-    - {{ pin_subpackage("e-antic") }}
 
 
 requirements:
-  build:
-    - libtool   # [unix]
-    - automake  # [unix]
-    - make      # [unix]
-    - autotools_clang_conda  # [win]
-    - gnuconfig  # [unix]
-    - {{ compiler('cxx') }}
   host:
     - antic
     - gmp       # [unix]
     - mpir      # [win]
     - arb
     - libflint
+    # pyeantic dependencies
+    - python
+    - cppyy
+    - cppyythonizations
+    - setuptools
 
-test:
-  commands:
-    - test -f $PREFIX/include/e-antic/e-antic.h  # [linux or osx]
-    - test -f $PREFIX/lib/libeantic.so           # [linux]
-    - test -f $PREFIX/lib/libeanticxx.so         # [linux]
-    - test -f $PREFIX/lib/libeantic.dylib        # [osx]
-    - test -f $PREFIX/lib/libeanticxx.dylib      # [osx]
+outputs:
+  - name: e-antic
+    run_exports:
+      # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
+      - {{ pin_subpackage("e-antic") }}
+    script: build-libeantic.sh
+    requirements:
+      build:
+        - libtool   # [unix]
+        - automake  # [unix]
+        - make      # [unix]
+        - autotools_clang_conda  # [win]
+        - gnuconfig  # [unix]
+        - {{ compiler('cxx') }}
+      host:
+        - antic
+        - gmp       # [unix]
+        - mpir      # [win]
+        - arb
+        - libflint
+    test:
+      commands:
+        - test -f $PREFIX/include/e-antic/e-antic.h  # [linux or osx]
+        - test -f $PREFIX/lib/libeantic.so           # [linux]
+        - test -f $PREFIX/lib/libeanticxx.so         # [linux]
+        - test -f $PREFIX/lib/libeantic.dylib        # [osx]
+        - test -f $PREFIX/lib/libeanticxx.dylib      # [osx]
+  - name: pyeantic
+    script: build-pyeantic.sh
+    requirements:
+      host:
+        - python
+        - cppyy
+        - {{ pin_subpackage("e-antic") }}
+    test:
+      imports:
+        - pyeantic
 
 about:
   home: https://github.com/flatsurf/e-antic
