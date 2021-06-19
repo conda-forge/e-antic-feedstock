@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: http://www.labri.fr/perso/vdelecro/{{ name | lower }}/{{ name | lower }}-{{ version }}.tar.gz
-  sha256: f73dad444fd81422d9a1594668615da94405fb6428ce8f2535b58f4cfe88a72d
+  url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
+  sha256: 8302e9d7fca4b33b1a2fd8ed88df6548d55c54694f428606e87bf8c6f129b317
 
 build:
   number: 0
