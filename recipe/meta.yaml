@@ -44,6 +44,7 @@ outputs:
         - {{ compiler('cxx') }}
       host:
         - antic
+        - boost-cpp
         - gmp       # [unix]
         - mpir      # [win]
         - arb
@@ -59,10 +60,12 @@ outputs:
     script: build-pyeantic.sh
     requirements:
       host:
+        - boost-cpp
         - python
         - cppyy
         - {{ pin_subpackage("e-antic") }}
       run:
+        - boost-cpp
         - python
         - cppyy
     test:
