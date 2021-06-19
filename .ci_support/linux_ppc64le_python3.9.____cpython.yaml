@@ -1,5 +1,7 @@
 arb:
 - '2.19'
+boost_cpp:
+- 1.74.0
 cdt_name:
 - cos7
 channel_sources:
@@ -15,6 +17,8 @@ docker_image:
 gmp:
 - '6'
 pin_run_as_build:
+  boost-cpp:
+    max_pin: x.x.x
   gmp:
     max_pin: x
   python:
