@@ -62,6 +62,9 @@ outputs:
         - python
         - cppyy
         - {{ pin_subpackage("e-antic") }}
+      run:
+        - python
+        - cppyy
     test:
       imports:
         - pyeantic
