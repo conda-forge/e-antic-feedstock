@@ -1,7 +1,7 @@
 About e-antic
 =============
 
-Home: https://github.com/videlec/e-antic
+Home: https://github.com/flatsurf/e-antic
 
 Package license: LGPL-3.0-or-later
 
@@ -104,6 +104,7 @@ Installing `e-antic` from the `conda-forge` channel can be achieved by adding `c
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `e-antic` can be installed with:
