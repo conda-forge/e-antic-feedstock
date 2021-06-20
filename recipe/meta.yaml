@@ -70,6 +70,7 @@ outputs:
         - boost-cpp
         - python
         - cppyy
+        - pytest
         - {{ pin_subpackage("e-antic") }}
       run:
         - boost-cpp
