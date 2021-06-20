@@ -17,7 +17,7 @@ cd pyeantic
 # Get an updated config.sub and config.guess
 cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
-./configure --prefix="$PREFIX" || (cat config.log; false)
+./configure --prefix="$PREFIX" --without-sage --without-realalg || (cat config.log; false)
 [[ "$target_platform" == "win-64" ]] && patch_libtool
 
 make -j${CPU_COUNT}
