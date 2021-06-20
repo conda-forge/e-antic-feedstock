@@ -14,20 +14,6 @@ build:
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
-
-requirements:
-  host:
-    - antic
-    - gmp       # [unix]
-    - mpir      # [win]
-    - arb
-    - libflint
-    # pyeantic dependencies
-    - python
-    - cppyy
-    - cppyythonizations
-    - setuptools
-
 outputs:
   - name: e-antic
     run_exports:
@@ -70,6 +56,7 @@ outputs:
         - boost-cpp
         - python
         - cppyy
+        - setuptools
         - pytest
         - {{ pin_subpackage("e-antic") }}
       run:
