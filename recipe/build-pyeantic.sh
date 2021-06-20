@@ -22,7 +22,7 @@ cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
 make -j${CPU_COUNT}
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
-make check || (cat test-suite.log; false)
+make check || (cat test/test-suite.log; false)
 fi
 make install
 
