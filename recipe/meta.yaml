@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
   sha256: 8302e9d7fca4b33b1a2fd8ed88df6548d55c54694f428606e87bf8c6f129b317
+  patches:
+    - realalg.patch
 
 build:
   number: 0

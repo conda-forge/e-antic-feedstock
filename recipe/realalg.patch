@@ -1,0 +1,119 @@
+From 8b82c6ccddb4ccf79d2cfabf7f262b629c104282 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Tue, 22 Jun 2021 10:01:54 +0200
+Subject: [PATCH] do not test realalg & sage in regular doctesting
+
+---
+ pyeantic/test/Makefile.am                             | 11 ++++++++---
+ pyeantic/test/python-doctest.sh.in                    |  7 ++++---
+ .../{realalg-doctest.sh => realalg-doctest.sh.in}     |  6 +++---
+ pyeantic/test/sage-doctest.sh.in                      |  6 +++---
+ 4 files changed, 18 insertions(+), 12 deletions(-)
+ rename pyeantic/test/{realalg-doctest.sh => realalg-doctest.sh.in} (83%)
+
+diff --git a/pyeantic/test/Makefile.am b/pyeantic/test/Makefile.am
+index c0618dc..1c334d0 100644
+--- a/pyeantic/test/Makefile.am
++++ b/pyeantic/test/Makefile.am
+@@ -14,12 +14,13 @@ renf_elem.py: test-env.sh bin/python
+ eantic_sage.py: test-env.sh bin/python
+ python-doctest.sh: test-env.sh bin/python
+ sage-doctest.sh: test-env.sh bin/python
++realalg-doctest.sh: test-env.sh bin/python
+ 
+ @VALGRIND_CHECK_RULES@
+ 
+-BUILT_SOURCES = test-env.sh bin/python python-doctest.sh sage-doctest.sh
+-EXTRA_DIST += test-env.sh.in bin/python.in python-doctest.sh.in sage-doctest.sh.in
+-CLEANFILES = test-env.sh bin/python python-doctest.sh sage-doctest.sh
++BUILT_SOURCES = test-env.sh bin/python python-doctest.sh sage-doctest.sh realalg-doctest.sh
++EXTRA_DIST += test-env.sh.in bin/python.in python-doctest.sh.in sage-doctest.sh.in realalg-doctest.sh.in
++CLEANFILES = test-env.sh bin/python python-doctest.sh sage-doctest.sh realalg-doctest.sh
+ 
+ $(builddir)/test-env.sh: $(srcdir)/test-env.sh.in Makefile
+ 	sed -e 's,[@]abs_srcdir[@],$(abs_srcdir),g' -e 's,[@]abs_builddir[@],$(abs_builddir),g' -e 's,[@]pythondir[@],$(pythondir),g' < $< > $@
+@@ -33,6 +34,10 @@ $(builddir)/python-doctest.sh: $(srcdir)/python-doctest.sh.in Makefile
+ 	sed -e 's,[@]abs_srcdir[@],$(abs_srcdir),g' -e 's,[@]abs_builddir[@],$(abs_builddir),g' < $< > $@
+ 	chmod +x $@
+ 
++$(builddir)/realalg-doctest.sh: $(srcdir)/realalg-doctest.sh.in Makefile
++	sed -e 's,[@]abs_srcdir[@],$(abs_srcdir),g' -e 's,[@]abs_builddir[@],$(abs_builddir),g' < $< > $@
++	chmod +x $@
++
+ $(builddir)/sage-doctest.sh: $(srcdir)/sage-doctest.sh.in Makefile
+ 	sed -e 's,[@]abs_srcdir[@],$(abs_srcdir),g' -e 's,[@]abs_builddir[@],$(abs_builddir),g' < $< > $@
+ 	chmod +x $@
+diff --git a/pyeantic/test/python-doctest.sh.in b/pyeantic/test/python-doctest.sh.in
+index 1951d61..60e7853 100755
+--- a/pyeantic/test/python-doctest.sh.in
++++ b/pyeantic/test/python-doctest.sh.in
+@@ -3,8 +3,8 @@
+ ######################################################################
+ #  This file is part of e-antic.
+ #
+-#        Copyright (C) 2019 Vincent Delecroix
+-#        Copyright (C) 2019 Julian Rüth
++#        Copyright (C)      2019 Vincent Delecroix
++#        Copyright (C) 2019-2021 Julian Rüth
+ #
+ #  e-antic is free software: you can redistribute it and/or modify
+ #  it under the terms of the GNU Lesser General Public License as published by
+@@ -27,4 +27,5 @@ set -ex
+ # our bin/python wrapper to set the necessary environment variables and invoke
+ # the Python binary to run pytest which keeps our environment intact on macOS.
+ 
+-python -m pytest --doctest-modules @abs_srcdir@/../src/pyeantic
++TARGETS=`grep -l '>>> ' @abs_srcdir@/../src/pyeantic/*.py | grep -v realalg | grep -v real_embedded_number_field`
++python -m pytest --doctest-modules $TARGETS
+diff --git a/pyeantic/test/realalg-doctest.sh b/pyeantic/test/realalg-doctest.sh.in
+similarity index 83%
+rename from pyeantic/test/realalg-doctest.sh
+rename to pyeantic/test/realalg-doctest.sh.in
+index 42b148f..a46889d 100755
+--- a/pyeantic/test/realalg-doctest.sh
++++ b/pyeantic/test/realalg-doctest.sh.in
+@@ -3,8 +3,8 @@
+ ######################################################################
+ #  This file is part of e-antic.
+ #
+-#        Copyright (C) 2019 Vincent Delecroix
+-#        Copyright (C) 2019 Julian Rüth
++#        Copyright (C)      2019 Vincent Delecroix
++#        Copyright (C) 2019-2021 Julian Rüth
+ #
+ #  e-antic is free software: you can redistribute it and/or modify
+ #  it under the terms of the GNU Lesser General Public License as published by
+@@ -22,5 +22,5 @@
+ 
+ set -ex
+ 
+-TARGETS=`grep -l '>>> ' ../src/pyeantic/*.py | grep realalg`
++TARGETS=`grep -l '>>> ' @abs_srcdir@/../src/pyeantic/*.py | grep realalg`
+ pytest --doctest-modules $TARGETS
+diff --git a/pyeantic/test/sage-doctest.sh.in b/pyeantic/test/sage-doctest.sh.in
+index f981a09..abd9409 100755
+--- a/pyeantic/test/sage-doctest.sh.in
++++ b/pyeantic/test/sage-doctest.sh.in
+@@ -3,8 +3,8 @@
+ ######################################################################
+ #  This file is part of e-antic.
+ #
+-#        Copyright (C) 2019 Vincent Delecroix
+-#        Copyright (C) 2019 Julian Rüth
++#        Copyright (C)      2019 Vincent Delecroix
++#        Copyright (C) 2019-2021 Julian Rüth
+ #
+ #  e-antic is free software: you can redistribute it and/or modify
+ #  it under the terms of the GNU Lesser General Public License as published by
+@@ -20,7 +20,7 @@
+ #  along with e-antic. If not, see <https://www.gnu.org/licenses/>.
+ #####################################################################
+ 
+-set -e
++set -ex
+ 
+ # On macOS we cannot run `sage -tp` directly to run tests since that's a shell
+ # script and macOS will sanitize our DYLD_LIBRARY_PATH then. So we need to
+-- 
+2.30.2
+
