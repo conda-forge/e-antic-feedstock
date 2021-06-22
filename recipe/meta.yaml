@@ -21,10 +21,11 @@ build:
 
 outputs:
   - name: e-antic
-    run_exports:
-      # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
-      - {{ pin_subpackage("e-antic") }}
     script: build-libeantic.sh
+    build:
+      run_exports:
+        # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
+        - {{ pin_subpackage("e-antic") }}
     requirements:
       build:
         - libtool   # [unix]
