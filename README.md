@@ -1,7 +1,7 @@
 About e-antic
 =============
 
-Home: https://github.com/videlec/e-antic
+Home: https://github.com/flatsurf/e-antic
 
 Package license: LGPL-3.0-or-later
 
@@ -20,21 +20,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://travis-ci.com/conda-forge/e-antic-feedstock">
-        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/e-antic-feedstock/master.svg?label=macOS">
-      </a>
-    </td>
-  </tr><tr>
-    <td>Drone</td>
-    <td>
-      <a href="https://cloud.drone.io/conda-forge/e-antic-feedstock">
-        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/e-antic-feedstock/master.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -96,6 +82,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-e--antic-green.svg)](https://anaconda.org/conda-forge/e-antic) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/e-antic.svg)](https://anaconda.org/conda-forge/e-antic) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/e-antic.svg)](https://anaconda.org/conda-forge/e-antic) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/e-antic.svg)](https://anaconda.org/conda-forge/e-antic) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pyeantic-green.svg)](https://anaconda.org/conda-forge/pyeantic) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pyeantic.svg)](https://anaconda.org/conda-forge/pyeantic) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyeantic.svg)](https://anaconda.org/conda-forge/pyeantic) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pyeantic.svg)](https://anaconda.org/conda-forge/pyeantic) |
 
 Installing e-antic
 ==================
@@ -104,12 +91,13 @@ Installing `e-antic` from the `conda-forge` channel can be achieved by adding `c
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `e-antic` can be installed with:
+Once the `conda-forge` channel has been enabled, `e-antic, pyeantic` can be installed with:
 
 ```
-conda install e-antic
+conda install e-antic pyeantic
 ```
 
 It is possible to list all of the versions of `e-antic` available on your platform with:
