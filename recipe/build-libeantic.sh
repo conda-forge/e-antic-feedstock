@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -x
+set -ex
 
 if [[ "$target_platform" == osx* ]]; then
     CXXFLAGS="$CXXFLAGS -fno-common"
@@ -9,8 +9,6 @@ if [[ "$target_platform" == win* ]]; then
     cp $PREFIX/lib/gmp.lib $PREFIX/lib/gmpxx.lib
     CXXFLAGS="$CXXFLAGS -std=c++14"
 fi
-
-set +x
 
 cd libeantic
 
