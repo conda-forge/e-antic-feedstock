@@ -10,13 +10,12 @@ source:
   sha256: 9ae24ffd55b3046c6db5af253574c1ee734751f20ceb2f123b47f69fac031f31
 
 build:
-  number: 0
-  # Upstream doesn't support MSVC yet.
-  skip: true  # [win]
+  number: 1
 
 outputs:
   - name: e-antic
-    script: build-libeantic.sh
+    script: build-libeantic.sh  # [not win]
+    script: bld-libeantic.bat  # [win]
     run_exports:
       # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
       - {{ pin_subpackage("e-antic") }}
@@ -43,7 +42,8 @@ outputs:
         - test -f $PREFIX/lib/libeantic.dylib        # [osx]
         - test -f $PREFIX/lib/libeanticxx.dylib      # [osx]
   - name: pyeantic
-    script: build-pyeantic.sh
+    script: build-pyeantic.sh  # [not win]
+    script: bld-pyeantic.bat  # [win]
     requirements:
       build:
         - python                              # [build_platform != target_platform]
