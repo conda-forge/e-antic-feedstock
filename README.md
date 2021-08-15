@@ -9,10 +9,10 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/e-antic-feedsto
 
 Summary: embedded algebraic number fields
 
-Development: https://github.com/videlec/e-antic
+Development: https://github.com/flatsurf/e-antic
 
-E-ANTIC is a C/C++ library to deal with real embedded number fields built
-on top of ANTIC. Its aim is to have as fast as possible exact arithmetic
+e-antic is a C/C++ library to deal with real embedded number fields built
+on top of ANTIC. It aims to privode the fastest possible exact arithmetic
 operations and comparisons.
 
 
@@ -81,7 +81,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-e--antic-green.svg)](https://anaconda.org/conda-forge/e-antic) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/e-antic.svg)](https://anaconda.org/conda-forge/e-antic) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/e-antic.svg)](https://anaconda.org/conda-forge/e-antic) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/e-antic.svg)](https://anaconda.org/conda-forge/e-antic) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libeantic-green.svg)](https://anaconda.org/conda-forge/libeantic) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libeantic.svg)](https://anaconda.org/conda-forge/libeantic) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libeantic.svg)](https://anaconda.org/conda-forge/libeantic) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libeantic.svg)](https://anaconda.org/conda-forge/libeantic) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pyeantic-green.svg)](https://anaconda.org/conda-forge/pyeantic) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pyeantic.svg)](https://anaconda.org/conda-forge/pyeantic) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyeantic.svg)](https://anaconda.org/conda-forge/pyeantic) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pyeantic.svg)](https://anaconda.org/conda-forge/pyeantic) |
 
 Installing e-antic
@@ -94,16 +94,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `e-antic, pyeantic` can be installed with:
+Once the `conda-forge` channel has been enabled, `libeantic, pyeantic` can be installed with:
 
 ```
-conda install e-antic pyeantic
+conda install libeantic pyeantic
 ```
 
-It is possible to list all of the versions of `e-antic` available on your platform with:
+It is possible to list all of the versions of `libeantic` available on your platform with:
 
 ```
-conda search e-antic --channel conda-forge
+conda search libeantic --channel conda-forge
 ```
 
 
