@@ -1,5 +1,5 @@
 {% set name = "e-antic" %}
-{% set version = "1.0.2" %}
+{% set version = "1.0.3" %}
 
 package:
   name: {{ name|lower }}
@@ -10,7 +10,7 @@ source:
   sha256: 17a47fad2d945c6282e8c9037f3e1fdfda62e50fff3605b73af42c37ceb35dd4
 
 build:
-  number: 3
+  number: 0
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
