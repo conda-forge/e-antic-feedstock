@@ -3,6 +3,6 @@ build_platform:
   linux_aarch64: linux_64
   osx_arm64: osx_64
 conda_forge_output_validation: true
-test_on_native_only: true
+test: native
 azure:
   store_build_artifacts: true
