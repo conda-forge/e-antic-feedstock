@@ -11,9 +11,9 @@ Summary: embedded algebraic number fields
 
 Development: https://github.com/flatsurf/e-antic
 
-e-antic is a C/C++ library to deal with real embedded number fields built
-on top of ANTIC. It aims to privode the fastest possible exact arithmetic
-operations and comparisons.
+e-antic is a C/C++/Python library to deal with real embedded number fields
+built on top of ANTIC. It aims to provide the fastest possible exact
+arithmetic operations and comparisons.
 
 
 Current build status

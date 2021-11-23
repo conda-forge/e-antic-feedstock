@@ -10,7 +10,7 @@ source:
   sha256: eea1dc66fed5962425bc7d2c5ccecb50d25c082b1d84276fa3838bfa96d9cb62
 
 build:
-  number: 0
+  number: 1
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
@@ -81,9 +81,9 @@ about:
   license_file: COPYING
   summary: embedded algebraic number fields
   description: |
-    e-antic is a C/C++ library to deal with real embedded number fields built
-    on top of ANTIC. It aims to privode the fastest possible exact arithmetic
-    operations and comparisons.
+    e-antic is a C/C++/Python library to deal with real embedded number fields
+    built on top of ANTIC. It aims to provide the fastest possible exact
+    arithmetic operations and comparisons.
   dev_url: https://github.com/flatsurf/e-antic
 
 extra:
