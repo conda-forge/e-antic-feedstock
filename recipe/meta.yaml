@@ -10,7 +10,7 @@ source:
   sha256: eea1dc66fed5962425bc7d2c5ccecb50d25c082b1d84276fa3838bfa96d9cb62
 
 build:
-  number: 1
+  number: 2
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
@@ -67,6 +67,8 @@ outputs:
         - python
         - cppyy
         - cppyythonizations
+        # Pin cysignals, see https://github.com/flatsurf/e-antic/issues/223
+        - cysignals <1.11.0  # [osx]
         # A subpackage does not see the run_exports of another subpackage:
         # https://github.com/conda/conda-build/issues/3478
         - {{ pin_subpackage("libeantic") }}
