@@ -24,3 +24,7 @@ make check || (cat test/test-suite.log; false)
 fi
 make install
 
+if [[ "$target_platform" == win* ]]; then
+    # Remove gmpxx.lib so it does not get installed.
+    rm $PREFIX/lib/gmpxx.lib
+fi
