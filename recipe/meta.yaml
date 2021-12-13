@@ -1,5 +1,5 @@
-{% set name = "E-ANTIC" %}
-{% set version = "1.0.1" %}
+{% set name = "e-antic" %}
+{% set version = "1.0.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,18 +7,18 @@ package:
 
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
-  sha256: 9ae24ffd55b3046c6db5af253574c1ee734751f20ceb2f123b47f69fac031f31
+  sha256: eea1dc66fed5962425bc7d2c5ccecb50d25c082b1d84276fa3838bfa96d9cb62
 
 build:
-  number: 1
+  number: 5
 
 outputs:
-  - name: e-antic
-    script: build-libeantic.sh  # [not win]
+  - name: libeantic
+    script: build-libeantic.sh
     script: bld-libeantic.bat  # [win]
     run_exports:
       # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
-      - {{ pin_subpackage("e-antic") }}
+      - {{ pin_subpackage("libeantic") }}
     requirements:
       build:
         - libtool   # [unix]
@@ -61,15 +61,17 @@ outputs:
         - cppyythonizations
         - setuptools
         - pytest
-        - {{ pin_subpackage("e-antic") }}
+        - {{ pin_subpackage("libeantic") }}
       run:
         - boost-cpp
         - python
         - cppyy
         - cppyythonizations
+        # Pin cysignals, see https://github.com/flatsurf/e-antic/issues/223
+        - cysignals <1.11.0  # [osx]
         # A subpackage does not see the run_exports of another subpackage:
         # https://github.com/conda/conda-build/issues/3478
-        - {{ pin_subpackage("e-antic") }}
+        - {{ pin_subpackage("libeantic") }}
     test:
       imports:
         - pyeantic
@@ -78,13 +80,15 @@ about:
   home: https://github.com/flatsurf/e-antic
   license: LGPL-3.0-or-later
   license_family: LGPL
-  license_file: COPYING
+  license_file:
+    - COPYING
+    - COPYING.LESSER
   summary: embedded algebraic number fields
   description: |
-    E-ANTIC is a C/C++ library to deal with real embedded number fields built
-    on top of ANTIC. Its aim is to have as fast as possible exact arithmetic
-    operations and comparisons.
-  dev_url: https://github.com/videlec/e-antic
+    e-antic is a C/C++/Python library to deal with real embedded number fields
+    built on top of ANTIC. It aims to provide the fastest possible exact
+    arithmetic operations and comparisons.
+  dev_url: https://github.com/flatsurf/e-antic
 
 extra:
   recipe-maintainers:
