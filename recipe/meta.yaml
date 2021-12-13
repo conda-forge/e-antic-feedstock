@@ -36,9 +36,9 @@ outputs:
         - libflint
     test:
       commands:
-        - test -f $PREFIX/include/e-antic/e-antic.h     # [linux or osx]
-        - test -f $PREFIX/lib/libeantic.${SHLIB_EXT}    # [linux]
-        - test -f $PREFIX/lib/libeanticxx.${SHLIB_EXT}  # [linux]
+        - test -f $PREFIX/include/e-antic/e-antic.h    # [linux or osx]
+        - test -f $PREFIX/lib/libeantic${SHLIB_EXT}    # [linux]
+        - test -f $PREFIX/lib/libeanticxx${SHLIB_EXT}  # [linux]
   - name: pyeantic
     script: build-pyeantic.sh  # [not win]
     script: bld-pyeantic.bat  # [win]
