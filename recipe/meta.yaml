@@ -12,7 +12,7 @@ source:
   - 0001-Fix-import-order-in-setup.py.patch
 
 build:
-  number: 1
+  number: 2
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
