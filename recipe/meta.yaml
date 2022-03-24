@@ -46,6 +46,8 @@ outputs:
         - test -f $PREFIX/lib/libeanticxx.dylib      # [osx]
   - name: pyeantic
     script: build-pyeantic.sh
+    # cppyy is not available on ppc64le
+    skip: True  # [ppc64le]
     requirements:
       build:
         - python                              # [build_platform != target_platform]
