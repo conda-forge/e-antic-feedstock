@@ -12,7 +12,7 @@ source:
   - 0001-Fix-import-order-in-setup.py.patch
 
 build:
-  number: 1
+  number: 2
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
@@ -46,6 +46,9 @@ outputs:
         - test -f $PREFIX/lib/libeanticxx.dylib      # [osx]
   - name: pyeantic
     script: build-pyeantic.sh
+    build:
+      # cppyy is not available on ppc64le
+      skip: True  # [ppc64le]
     requirements:
       build:
         - python                              # [build_platform != target_platform]
@@ -69,8 +72,6 @@ outputs:
         - python
         - cppyy
         - cppyythonizations
-        # Pin cysignals, see https://github.com/flatsurf/e-antic/issues/223
-        - cysignals <1.11.0  # [osx]
         # A subpackage does not see the run_exports of another subpackage:
         # https://github.com/conda/conda-build/issues/3478
         - {{ pin_subpackage("libeantic") }}
