@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
   sha256: 2d178ae9641c07ca9a5fb4ee0739e0db1a0b6c627543bf7e3472504174bf996d
-  patches:
-    - 0001-Fix-import-order-in-setup.py.patch
 
 build:
   number: 0
