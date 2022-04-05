@@ -1,5 +1,5 @@
 {% set name = "e-antic" %}
-{% set version = "1.1.0" %}
+{% set version = "1.1.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
-  sha256: b914d082c486a9d17cd46b38a55170ba7b1838a2ab8a29f986899d2668f8210e
+  sha256: 2d178ae9641c07ca9a5fb4ee0739e0db1a0b6c627543bf7e3472504174bf996d
   patches:
-  - 0001-Fix-import-order-in-setup.py.patch
+    - 0001-Fix-import-order-in-setup.py.patch
 
 build:
-  number: 2
+  number: 0
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
@@ -48,7 +48,7 @@ outputs:
     script: build-pyeantic.sh
     build:
       # cppyy is not available on ppc64le
-      skip: True  # [ppc64le]
+      skip: true  # [ppc64le]
     requirements:
       build:
         - python                              # [build_platform != target_platform]
