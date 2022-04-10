@@ -1,5 +1,5 @@
 {% set name = "e-antic" %}
-{% set version = "1.1.1" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
-  sha256: 2d178ae9641c07ca9a5fb4ee0739e0db1a0b6c627543bf7e3472504174bf996d
+  sha256: 2c00fec3601611d7b82a17ce09828ad4689ef28b4be491fc12d8c58c2c1deed8
 
 build:
   number: 0
@@ -62,6 +62,7 @@ outputs:
         - python
         - cppyy
         - cppyythonizations
+        - gmpxxyy
         - setuptools
         - pytest
         - {{ pin_subpackage("libeantic") }}
@@ -70,6 +71,7 @@ outputs:
         - python
         - cppyy
         - cppyythonizations
+        - gmpxxyy
         # A subpackage does not see the run_exports of another subpackage:
         # https://github.com/conda/conda-build/issues/3478
         - {{ pin_subpackage("libeantic") }}
