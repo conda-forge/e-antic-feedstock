@@ -3,7 +3,7 @@ BUILD:
 antic:
 - '0.2'
 arb:
-- '2.22'
+- '2.23'
 boost_cpp:
 - 1.74.0
 cdt_arch:
