@@ -3,7 +3,7 @@ antic:
 arb:
 - '2.23'
 boost_cpp:
-- 1.74.0
+- 1.78.0
 cdt_name:
 - cos6
 channel_sources:
