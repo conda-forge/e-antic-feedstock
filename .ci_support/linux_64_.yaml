@@ -23,8 +23,6 @@ libflint:
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
-  gmp:
-    max_pin: x
   python:
     min_pin: x.x
     max_pin: x.x
