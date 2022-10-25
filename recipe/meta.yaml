@@ -1,5 +1,5 @@
 {% set name = "e-antic" %}
-{% set version = "1.2.1" %}
+{% set version = "1.2.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
-  sha256: a7bfb92620fd7e42a06efbe89e011abee88f4fbd99bcec34fd8300ae9b1cf543
+  sha256: 234caf26e93384cf2f3833a440561df5c530c50c30a9abc726092f592b58eee9
 
 build:
-  number: 3
+  number: 0
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
