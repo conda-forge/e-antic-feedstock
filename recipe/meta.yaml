@@ -1,5 +1,5 @@
 {% set name = "e-antic" %}
-{% set version = "1.2.2" %}
+{% set version = "1.2.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
-  sha256: 931ab789f3dd989ec1e53b196cbf0863ae8429c3180efbfdbd30bae03ed80f8b
+  sha256: 42feec76abcbcb11648062aadb2a2a95e9ac712366a3eea5a1e5cfb1e0b11d40
 
 build:
   number: 0
