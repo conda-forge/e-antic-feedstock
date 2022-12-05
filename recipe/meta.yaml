@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
-  sha256: fbfbc7e2dd89fe05eeed244c7376bdf2b60d56176ad1d933e017b1f84cd70336
+  sha256: ae12cb87f09478f49c4acdf0f3ff888dc556267614c0a5a3bc8bfaa41b22deef
 
 build:
   number: 0
