@@ -10,7 +10,7 @@ source:
   sha256: ae12cb87f09478f49c4acdf0f3ff888dc556267614c0a5a3bc8bfaa41b22deef
 
 build:
-  number: 0
+  number: 1
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
@@ -30,7 +30,7 @@ outputs:
         - {{ compiler('cxx') }}
       host:
         - antic
-        - boost-cpp
+        - libboost-headers
         - gmp       # [unix]
         - mpir      # [win]
         - arb
@@ -58,7 +58,7 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
       host:
-        - boost-cpp
+        - libboost-devel
         - python
         - cppyy
         - cppyythonizations
@@ -67,7 +67,6 @@ outputs:
         - pytest
         - {{ pin_subpackage("libeantic") }}
       run:
-        - boost-cpp
         - python
         - cppyy
         - cppyythonizations
