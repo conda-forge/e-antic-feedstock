@@ -10,7 +10,7 @@ source:
   sha256: ae12cb87f09478f49c4acdf0f3ff888dc556267614c0a5a3bc8bfaa41b22deef
 
 build:
-  number: 0
+  number: 1
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
@@ -30,7 +30,7 @@ outputs:
         - {{ compiler('cxx') }}
       host:
         - antic
-        - boost-cpp
+        - libboost-headers
         - gmp       # [unix]
         - mpir      # [win]
         - arb
@@ -42,11 +42,14 @@ outputs:
         - test -f $PREFIX/lib/libeanticxx.so         # [linux]
         - test -f $PREFIX/lib/libeantic.dylib        # [osx]
         - test -f $PREFIX/lib/libeanticxx.dylib      # [osx]
+
   - name: pyeantic
     script: build-pyeantic.sh
     build:
       # cppyy is not available on ppc64le
       skip: true  # [ppc64le]
+      # cppyy is not available on aarch64
+      skip: true  # [aarch64]
     requirements:
       build:
         - python                              # [build_platform != target_platform]
@@ -58,7 +61,7 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
       host:
-        - boost-cpp
+        - libboost-headers
         - python
         - cppyy
         - cppyythonizations
@@ -67,11 +70,11 @@ outputs:
         - pytest
         - {{ pin_subpackage("libeantic") }}
       run:
-        - boost-cpp
         - python
         - cppyy
         - cppyythonizations
         - gmpxxyy
+        - libboost-headers
         # A subpackage does not see the run_exports of another subpackage:
         # https://github.com/conda/conda-build/issues/3478
         - {{ pin_subpackage("libeantic") }}
