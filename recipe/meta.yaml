@@ -48,6 +48,8 @@ outputs:
     build:
       # cppyy is not available on ppc64le
       skip: true  # [ppc64le]
+      # cppyy is not available on aarch64
+      skip: true  # [aarch64]
     requirements:
       build:
         - python                              # [build_platform != target_platform]
