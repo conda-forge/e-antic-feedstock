@@ -61,7 +61,7 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
       host:
-        - libboost-devel
+        - libboost-headers
         - python
         - cppyy
         - cppyythonizations
