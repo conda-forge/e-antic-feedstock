@@ -29,11 +29,9 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
       host:
-        - antic
         - libboost-headers
         - gmp       # [unix]
         - mpir      # [win]
-        - arb
         - libflint
     test:
       commands:
