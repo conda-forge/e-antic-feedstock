@@ -21,6 +21,6 @@ docker_image:
 gmp:
 - '6'
 libflint:
-- '2.9'
+- '3.0'
 target_platform:
 - linux-aarch64
