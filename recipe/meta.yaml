@@ -10,7 +10,7 @@ source:
   sha256: a38d2ab62c1b00fa2ee78f39039cc4d9d8e83de5fa5e2a18529ad34ab8976fe1
 
 build:
-  number: 0
+  number: 1
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
@@ -29,7 +29,12 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
       host:
-        - libboost-headers
+        # We only need the libboost-headers at compile time. However, since we
+        # use bits of boost in our API, code built against libeantic must be
+        # built with a compatible version of the headers. Therefore, we add a
+        # liboost pin to our run exports so libboost-headers are going to be
+        # in a compatible version.
+        - libboost-devel
         - gmp       # [unix]
         - mpir      # [win]
         - libflint
@@ -59,6 +64,8 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
       host:
+        # Note that the libboost-devel from libeantic forces these headers to be
+        # compatible with ones used when building libeantic.
         - libboost-headers
         - python
         - cppyy
@@ -72,6 +79,9 @@ outputs:
         - cppyy
         - cppyythonizations
         - gmpxxyy
+        # cppyy dynamically compiles C++ wrappers at runtime, therefore we need C++ headers of boost.
+        # Note that the libboost-devel from libeantic forces these headers to be
+        # compatible with ones used when building libeantic.
         - libboost-headers
         # A subpackage does not see the run_exports of another subpackage:
         # https://github.com/conda/conda-build/issues/3478

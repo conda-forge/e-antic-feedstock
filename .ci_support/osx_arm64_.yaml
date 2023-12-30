@@ -10,6 +10,8 @@ cxx_compiler_version:
 - '14'
 gmp:
 - '6'
+libboost_devel:
+- '1.82'
 libflint:
 - '3.0'
 macos_machine:
