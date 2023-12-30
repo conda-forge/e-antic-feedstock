@@ -64,7 +64,7 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
       host:
-        # Note that the liboost-devel from libeantic forces these headers to be
+        # Note that the libboost-devel from libeantic forces these headers to be
         # compatible with ones used when building libeantic.
         - libboost-headers
         - python
@@ -80,7 +80,7 @@ outputs:
         - cppyythonizations
         - gmpxxyy
         # cppyy dynamically compiles C++ wrappers at runtime, therefore we need C++ headers of boost.
-        # Note that the liboost-devel from libeantic forces these headers to be
+        # Note that the libboost-devel from libeantic forces these headers to be
         # compatible with ones used when building libeantic.
         - libboost-headers
         # A subpackage does not see the run_exports of another subpackage:
