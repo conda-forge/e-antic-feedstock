@@ -32,7 +32,7 @@ outputs:
         # We only need the libboost-headers at compile time. However, since we
         # use bits of boost in our API, code built against libeantic must be
         # built with a compatible version of the headers. Therefore, we add a
-        # liboost pin to our run exports so libbookst-headers are going to be
+        # liboost pin to our run exports so libboost-headers are going to be
         # in a compatible version.
         - libboost-devel
         - gmp       # [unix]
