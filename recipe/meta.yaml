@@ -1,5 +1,5 @@
 {% set name = "e-antic" %}
-{% set version = "1.0.3" %}
+{% set version = "2.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
-  sha256: eea1dc66fed5962425bc7d2c5ccecb50d25c082b1d84276fa3838bfa96d9cb62
+  sha256: a38d2ab62c1b00fa2ee78f39039cc4d9d8e83de5fa5e2a18529ad34ab8976fe1
 
 build:
-  number: 5
+  number: 2
 
 outputs:
   - name: libeantic
@@ -28,11 +28,14 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
       host:
-        - antic
-        - boost-cpp
+        # We only need the libboost-headers at compile time. However, since we
+        # use bits of boost in our API, code built against libeantic must be
+        # built with a compatible version of the headers. Therefore, we add a
+        # liboost pin to our run exports so libboost-headers are going to be
+        # in a compatible version.
+        - libboost-devel
         - gmp       # [unix]
         - mpir      # [win]
-        - arb
         - libflint
     test:
       commands:
@@ -42,6 +45,11 @@ outputs:
   - name: pyeantic
     script: build-pyeantic.sh  # [not win]
     script: bld-pyeantic.bat  # [win]
+    build:
+      # cppyy is not available on ppc64le
+      skip: true  # [ppc64le]
+      # cppyy is not available on aarch64
+      skip: true  # [aarch64]
     requirements:
       build:
         - python                              # [build_platform != target_platform]
@@ -53,20 +61,25 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
       host:
-        - boost-cpp
+        # Note that the libboost-devel from libeantic forces these headers to be
+        # compatible with ones used when building libeantic.
+        - libboost-headers
         - python
         - cppyy
         - cppyythonizations
+        - gmpxxyy
         - setuptools
         - pytest
         - {{ pin_subpackage("libeantic") }}
       run:
-        - boost-cpp
         - python
         - cppyy
         - cppyythonizations
-        # Pin cysignals, see https://github.com/flatsurf/e-antic/issues/223
-        - cysignals <1.11.0  # [osx]
+        - gmpxxyy
+        # cppyy dynamically compiles C++ wrappers at runtime, therefore we need C++ headers of boost.
+        # Note that the libboost-devel from libeantic forces these headers to be
+        # compatible with ones used when building libeantic.
+        - libboost-headers
         # A subpackage does not see the run_exports of another subpackage:
         # https://github.com/conda/conda-build/issues/3478
         - {{ pin_subpackage("libeantic") }}

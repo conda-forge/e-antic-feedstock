@@ -1,11 +1,5 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '11.0'
-antic:
-- '0.2'
-arb:
-- '2.21'
-boost_cpp:
-- 1.74.0
 channel_sources:
 - conda-forge
 channel_targets:
@@ -13,22 +7,22 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '11'
+- '14'
 gmp:
 - '6'
+libboost_devel:
+- '1.82'
 libflint:
-- '2.8'
+- '3.0'
 macos_machine:
 - arm64-apple-darwin20.0.0
 pin_run_as_build:
-  boost-cpp:
-    max_pin: x.x.x
-  gmp:
-    max_pin: x
   python:
     min_pin: x.x
     max_pin: x.x
 python:
+- 3.10.* *_cpython
+- 3.11.* *_cpython
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 target_platform:
