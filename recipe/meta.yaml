@@ -10,7 +10,7 @@ source:
   sha256: 9ffe4f83a913efbf18c99bc17d208c0cd2f70b142b3cadf53a0360104f2b5d6b
 
 build:
-  number: 0
+  number: 1
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
