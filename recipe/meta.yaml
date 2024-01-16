@@ -10,13 +10,12 @@ source:
   sha256: 8328e6490129dfec7f4aa478ebd54dc07686bd5e5e7f5f30dcf20c0f11b67f60
 
 build:
-  number: 1
-  # Upstream doesn't support MSVC yet.
-  skip: true  # [win]
+  number: 2
 
 outputs:
   - name: libeantic
     script: build-libeantic.sh
+    script: bld-libeantic.bat  # [win]
     run_exports:
       # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
       - {{ pin_subpackage("libeantic") }}
@@ -40,14 +39,12 @@ outputs:
         - libflint
     test:
       commands:
-        - test -f $PREFIX/include/e-antic/e-antic.h  # [linux or osx]
-        - test -f $PREFIX/lib/libeantic.so           # [linux]
-        - test -f $PREFIX/lib/libeanticxx.so         # [linux]
-        - test -f $PREFIX/lib/libeantic.dylib        # [osx]
-        - test -f $PREFIX/lib/libeanticxx.dylib      # [osx]
-
+        - test -f $PREFIX/include/e-antic/e-antic.h    # [linux or osx]
+        - test -f $PREFIX/lib/libeantic${SHLIB_EXT}    # [linux]
+        - test -f $PREFIX/lib/libeanticxx${SHLIB_EXT}  # [linux]
   - name: pyeantic
-    script: build-pyeantic.sh
+    script: build-pyeantic.sh  # [not win]
+    script: bld-pyeantic.bat  # [win]
     build:
       # cppyy is not available on ppc64le
       skip: true  # [ppc64le]
