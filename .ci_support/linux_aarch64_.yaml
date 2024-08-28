@@ -15,7 +15,7 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '12'
+- '13'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 gmp:
@@ -23,7 +23,7 @@ gmp:
 libboost_devel:
 - '1.84'
 libflint:
-- '3.0'
+- '3.1'
 target_platform:
 - linux-aarch64
 zip_keys:
