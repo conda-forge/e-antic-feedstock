@@ -15,15 +15,13 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '14'
+- '17'
 gmp:
 - '6'
 libboost_devel:
 - '1.84'
 libboost_headers:
 - '1.84'
-libeantic:
-- '2'
 libflint:
 - '3.1'
 macos_machine:
