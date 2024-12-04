@@ -22,6 +22,8 @@ libboost_devel:
 - '1.84'
 libboost_headers:
 - '1.84'
+libeantic:
+- '2'
 libflint:
 - '3.1'
 macos_machine:
