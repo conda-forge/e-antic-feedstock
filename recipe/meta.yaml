@@ -54,6 +54,8 @@ outputs:
       skip: true  # [ppc64le]
       # cppyy is not available on aarch64
       skip: true  # [aarch64]
+      ignore_run_exports_from:
+        - icu *
     requirements:
       build:
         - python                              # [build_platform != target_platform]
@@ -76,6 +78,9 @@ outputs:
         - setuptools
         - pytest
         - {{ pin_subpackage("libeantic") }}
+        # See https://github.com/conda-forge/libxml2-feedstock/issues/137
+        # and https://github.com/conda/conda-build/issues/3308
+        - icu *
       run:
         - python
         - cppyy
