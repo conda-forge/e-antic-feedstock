@@ -4,3 +4,12 @@ c_compiler_version:        # [osx]
   - 17                     # [osx]
 cxx_compiler_version:      # [osx]
   - 17                     # [osx]
+# Many versions of SageMath are built against FLINT 2. Recent versions are
+# built against 3.0. To make e-antic compatible with more versions of SageMath
+# (for downstream testing) we built against several releases of FLINT (and not
+# just the latest from the pinning feedstock.)
+libflint:
+  - '2.8'
+  - '2.9'
+  - '3.0'
+  - '3.1'
