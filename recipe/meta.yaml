@@ -39,6 +39,8 @@ outputs:
         - gmp       # [unix]
         - mpir      # [win]
         - libflint
+        - antic  # [libflint == '2.9']
+        - arb    # [libflint == '2.9']
     test:
       commands:
         - test -f $PREFIX/include/e-antic/e-antic.h  # [linux or osx]
