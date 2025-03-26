@@ -38,7 +38,7 @@ outputs:
         - libboost-devel
         - gmp       # [unix]
         - mpir      # [win]
-        - libflint
+        - libflint  {{ flint }}
     test:
       commands:
         - test -f $PREFIX/include/e-antic/e-antic.h  # [linux or osx]
