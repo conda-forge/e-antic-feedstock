@@ -69,6 +69,13 @@ outputs:
         - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
         - {{ stdlib("c") }}
+        # Strangely, the C compiler is not functional on macOS when
+        # cross-compiling here when this library is not installed.
+        # We get:
+        # dyld[28667]: Library not loaded: @rpath/libtapi.dylib
+        #   Referenced from: <B7360C67-C20A-35AE-922B-D9A6315483FE> /Users/runner/miniforge3/pkgs/ld64_osx-arm64-951.9-hb820725_3/bin/arm64-apple-darwin20.0.0-ld
+        # which does not seem to have anything to do with expat.
+        - libexpat
       host:
         # Note that the libboost-devel from libeantic forces these headers to be
         # compatible with ones used when building libeantic.
