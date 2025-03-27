@@ -11,7 +11,7 @@ if [[ "$target_platform" == win* ]]; then
 fi
 
 if [[ "${libflint}" == "3.2" ]]; then
-    CXXFLAGS="$CXXFLAGS -DFLINT_TEST_CLEANUP=FLINT_TEST_CLEAR"
+    CPPFLAGS="$CPPFLAGS -DFLINT_TEST_CLEANUP=FLINT_TEST_CLEAR"
 fi
 
 cd libeantic
