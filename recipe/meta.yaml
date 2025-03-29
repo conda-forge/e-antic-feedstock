@@ -12,7 +12,7 @@ source:
     - gmp-header.diff
 
 build:
-  number: 6
+  number: 7
   # Upstream doesn't support MSVC yet.
   skip: true  # [win]
 
