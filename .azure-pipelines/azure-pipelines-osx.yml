@@ -8,6 +8,10 @@ jobs:
     vmImage: macOS-13
   strategy:
     matrix:
+      osx_64_libflint2.9:
+        CONFIG: osx_64_libflint2.9
+        UPLOAD_PACKAGES: 'True'
+        SHORT_CONFIG: osx_64_libflint2.9
       osx_64_libflint3.0:
         CONFIG: osx_64_libflint3.0
         UPLOAD_PACKAGES: 'True'
@@ -20,6 +24,10 @@ jobs:
         CONFIG: osx_64_libflint3.2
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: osx_64_libflint3.2
+      osx_arm64_libflint2.9:
+        CONFIG: osx_arm64_libflint2.9
+        UPLOAD_PACKAGES: 'True'
+        SHORT_CONFIG: osx_arm64_libflint2.9
       osx_arm64_libflint3.0:
         CONFIG: osx_arm64_libflint3.0
         UPLOAD_PACKAGES: 'True'

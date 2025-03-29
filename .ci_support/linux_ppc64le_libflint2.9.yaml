@@ -22,20 +22,9 @@ gmp:
 - '6'
 libboost_devel:
 - '1.86'
-libboost_headers:
-- '1.86'
 libeantic:
 - '2'
 libflint:
-- '3.1'
-pin_run_as_build:
-  python:
-    min_pin: x.x
-    max_pin: x.x
-python:
-- 3.10.* *_cpython
-- 3.11.* *_cpython
-- 3.12.* *_cpython
-- 3.9.* *_cpython
+- '2.9'
 target_platform:
-- linux-64
+- linux-ppc64le
