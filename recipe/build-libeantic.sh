@@ -10,6 +10,10 @@ if [[ "$target_platform" == win* ]]; then
     CXXFLAGS="$CXXFLAGS -std=c++14"
 fi
 
+if [[ "${libflint}" == "3.2" ]]; then
+    CPPFLAGS="$CPPFLAGS -DFLINT_TEST_CLEANUP=FLINT_TEST_CLEAR"
+fi
+
 cd libeantic
 
 # Get an updated config.sub and config.guess
