@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
   sha256: e3e78701d054b441f95d83b6fb55cd84bfd931f5d4a61a2822dc977a20c46f80
-  patches:
-    - gmp-header.diff
 
 build:
   number: 0
