@@ -1,34 +1,42 @@
-{% set name = "e-antic" %}
-{% set version = "2.1.1" %}
+schema_version: 1
 
-package:
-  name: {{ name|lower }}
-  version: {{ version }}
+context:
+  name: e-antic
+  version: "2.1.1"
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://github.com/flatsurf/e-antic/releases/download/{{ version }}/e-antic-{{ version }}.tar.gz
+  url: https://github.com/flatsurf/e-antic/releases/download/${{ version }}/e-antic-${{ version }}.tar.gz
   sha256: e3287fa603b44d9a43c4cac5d883e65e90aedc35821061c1dc5b8d9c94a01cd8
 
 build:
-  number: 1
   # Upstream doesn't support MSVC yet.
-  skip: true  # [win]
+  number: 1
+  skip: win
 
 outputs:
-  - name: libeantic
-    script: build-libeantic.sh
-    run_exports:
-      # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
-      - {{ pin_subpackage("libeantic") }}
+  - package:
+      name: libeantic
+    build:
+      script:
+        file: build-libeantic.sh
     requirements:
       build:
-        - libtool   # [unix]
-        - automake  # [unix]
-        - make      # [unix]
-        - autotools_clang_conda  # [win]
-        - gnuconfig  # [unix]
-        - {{ compiler('cxx') }}
-        - {{ stdlib("c") }}
+        - if: unix
+          then: libtool
+        - if: unix
+          then: automake
+        - if: unix
+          then: make
+        - if: win
+          then: autotools_clang_conda
+        - if: unix
+          then: gnuconfig
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
       host:
         # We only need the libboost-headers at compile time. However, since we
         # use bits of boost in our API, code built against libeantic must be
@@ -36,39 +44,57 @@ outputs:
         # liboost pin to our run exports so libboost-headers are going to be
         # in a compatible version.
         - libboost-devel
-        - gmp       # [unix]
-        - mpir      # [win]
+        - if: unix
+          then: gmp
+        - if: win
+          then: mpir
         - libflint
-        - antic  # [libflint == '2.9']
-        - arb    # [libflint == '2.9']
-    test:
-      commands:
-        - test -f $PREFIX/include/e-antic/e-antic.h  # [linux or osx]
-        - test -f $PREFIX/lib/libeantic.so           # [linux]
-        - test -f $PREFIX/lib/libeanticxx.so         # [linux]
-        - test -f $PREFIX/lib/libeantic.dylib        # [osx]
-        - test -f $PREFIX/lib/libeanticxx.dylib      # [osx]
-
-  - name: pyeantic
-    script: build-pyeantic.sh
+        - if: libflint == '2.9'
+          then: antic
+        - if: libflint == '2.9'
+          then: arb
+    tests:
+      - script:
+          - if: linux or osx
+            then: test -f $PREFIX/include/e-antic/e-antic.h
+          - if: linux
+            then: test -f $PREFIX/lib/libeantic.so
+          - if: linux
+            then: test -f $PREFIX/lib/libeanticxx.so
+          - if: osx
+            then: test -f $PREFIX/lib/libeantic.dylib
+          - if: osx
+            then: test -f $PREFIX/lib/libeanticxx.dylib
+    run_exports:
+      # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
+      - ${{ pin_subpackage("libeantic") }}
+  - package:
+      name: pyeantic
     build:
-      # cppyy is not available on ppc64le
-      skip: true  # [ppc64le]
-      # cppyy is not available on aarch64
-      skip: true  # [aarch64]
-      ignore_run_exports_from:
-        - icu *
+      # cppyy is not available on these yet
+      skip:
+        - aarch64
+        - ppc64le
+      script:
+        file: build-pyeantic.sh
     requirements:
       build:
-        - python                              # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
-        - libtool   # [unix]
-        - automake  # [unix]
-        - make      # [unix]
-        - autotools_clang_conda  # [win]
-        - gnuconfig  # [unix]
-        - {{ compiler('cxx') }}
-        - {{ stdlib("c") }}
+        - if: build_platform != target_platform
+          then: python
+        - if: build_platform != target_platform
+          then: cross-python_${{ target_platform }}
+        - if: unix
+          then: libtool
+        - if: unix
+          then: automake
+        - if: unix
+          then: make
+        - if: win
+          then: autotools_clang_conda
+        - if: unix
+          then: gnuconfig
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
         # Strangely, the C compiler is not functional on macOS when
         # cross-compiling here when this library is not installed.
         # We get:
@@ -86,7 +112,7 @@ outputs:
         - gmpxxyy
         - setuptools
         - pytest
-        - {{ pin_subpackage("libeantic") }}
+        - ${{ pin_subpackage("libeantic") }}
         # See https://github.com/conda-forge/libxml2-feedstock/issues/137
         # and https://github.com/conda/conda-build/issues/3308
         - icu *
@@ -101,15 +127,18 @@ outputs:
         - libboost-headers
         # A subpackage does not see the run_exports of another subpackage:
         # https://github.com/conda/conda-build/issues/3478
-        - {{ pin_subpackage("libeantic") }}
-    test:
-      imports:
-        - pyeantic
+        - ${{ pin_subpackage("libeantic") }}
+      ignore_run_exports:
+        from_package:
+          - icu *
+    tests:
+      - python:
+          imports:
+            - pyeantic
+          pip_check: false
 
 about:
-  home: https://github.com/flatsurf/e-antic
   license: LGPL-3.0-or-later
-  license_family: LGPL
   license_file:
     - COPYING
     - COPYING.LESSER
@@ -118,9 +147,11 @@ about:
     e-antic is a C/C++/Python library to deal with real embedded number fields
     built on top of ANTIC. It aims to provide the fastest possible exact
     arithmetic operations and comparisons.
-  dev_url: https://github.com/flatsurf/e-antic
+  homepage: https://github.com/flatsurf/e-antic
+  repository: https://github.com/flatsurf/e-antic
 
 extra:
   recipe-maintainers:
     - saraedum
     - videlec
+
