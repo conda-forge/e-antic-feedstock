@@ -113,9 +113,6 @@ outputs:
         - setuptools
         - pytest
         - ${{ pin_subpackage("libeantic") }}
-        # See https://github.com/conda-forge/libxml2-feedstock/issues/137
-        # and https://github.com/conda/conda-build/issues/3308
-        - icu *
       run:
         - python
         - cppyy
@@ -128,9 +125,6 @@ outputs:
         # A subpackage does not see the run_exports of another subpackage:
         # https://github.com/conda/conda-build/issues/3478
         - ${{ pin_subpackage("libeantic") }}
-      ignore_run_exports:
-        from_package:
-          - icu *
     tests:
       - python:
           imports:
