@@ -1,0 +1,150 @@
+schema_version: 1
+
+context:
+  name: e-antic
+  version: "2.1.1"
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/flatsurf/e-antic/releases/download/${{ version }}/e-antic-${{ version }}.tar.gz
+  sha256: e3287fa603b44d9a43c4cac5d883e65e90aedc35821061c1dc5b8d9c94a01cd8
+
+build:
+  # Upstream doesn't support MSVC yet.
+  number: 2
+  skip: win
+
+outputs:
+  - package:
+      name: libeantic
+    build:
+      script:
+        file: build-libeantic.sh
+    requirements:
+      build:
+        - if: unix
+          then: libtool
+        - if: unix
+          then: automake
+        - if: unix
+          then: make
+        - if: win
+          then: autotools_clang_conda
+        - if: unix
+          then: gnuconfig
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
+      host:
+        # We only need the libboost-headers at compile time. However, since we
+        # use bits of boost in our API, code built against libeantic must be
+        # built with a compatible version of the headers. Therefore, we add a
+        # liboost pin to our run exports so libboost-headers are going to be
+        # in a compatible version.
+        - libboost-devel
+        - if: unix
+          then: gmp
+        - if: win
+          then: mpir
+        - libflint
+        - if: libflint == '2.9'
+          then: antic
+        - if: libflint == '2.9'
+          then: arb
+      run_exports:
+        # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
+        - ${{ pin_subpackage("libeantic") }}
+    tests:
+      - script:
+          - if: linux or osx
+            then: test -f $PREFIX/include/e-antic/e-antic.h
+          - if: linux
+            then: test -f $PREFIX/lib/libeantic.so
+          - if: linux
+            then: test -f $PREFIX/lib/libeanticxx.so
+          - if: osx
+            then: test -f $PREFIX/lib/libeantic.dylib
+          - if: osx
+            then: test -f $PREFIX/lib/libeanticxx.dylib
+  - package:
+      name: pyeantic
+    build:
+      # cppyy is not available on these yet
+      skip:
+        - aarch64
+        - ppc64le
+      script:
+        file: build-pyeantic.sh
+    requirements:
+      build:
+        - if: build_platform != target_platform
+          then: python
+        - if: build_platform != target_platform
+          then: cross-python_${{ target_platform }}
+        - if: unix
+          then: libtool
+        - if: unix
+          then: automake
+        - if: unix
+          then: make
+        - if: win
+          then: autotools_clang_conda
+        - if: unix
+          then: gnuconfig
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
+        # Strangely, the C compiler is not functional on macOS when
+        # cross-compiling here when this library is not installed.
+        # We get:
+        # dyld[28667]: Library not loaded: @rpath/libtapi.dylib
+        #   Referenced from: <B7360C67-C20A-35AE-922B-D9A6315483FE> /Users/runner/miniforge3/pkgs/ld64_osx-arm64-951.9-hb820725_3/bin/arm64-apple-darwin20.0.0-ld
+        # which does not seem to have anything to do with expat.
+        - libexpat
+      host:
+        # Note that the libboost-devel from libeantic forces these headers to be
+        # compatible with ones used when building libeantic.
+        - libboost-headers
+        - python
+        - cppyy
+        - cppyythonizations
+        - gmpxxyy
+        - setuptools
+        - pytest
+        - ${{ pin_subpackage("libeantic") }}
+      run:
+        - python
+        - cppyy
+        - cppyythonizations
+        - gmpxxyy
+        # cppyy dynamically compiles C++ wrappers at runtime, therefore we need C++ headers of boost.
+        # Note that the libboost-devel from libeantic forces these headers to be
+        # compatible with ones used when building libeantic.
+        - libboost-headers
+        # A subpackage does not see the run_exports of another subpackage:
+        # https://github.com/conda/conda-build/issues/3478
+        - ${{ pin_subpackage("libeantic") }}
+    tests:
+      - python:
+          imports:
+            - pyeantic
+          pip_check: false
+
+about:
+  license: LGPL-3.0-or-later
+  license_file:
+    - COPYING
+    - COPYING.LESSER
+  summary: embedded algebraic number fields
+  description: |
+    e-antic is a C/C++/Python library to deal with real embedded number fields
+    built on top of ANTIC. It aims to provide the fastest possible exact
+    arithmetic operations and comparisons.
+  homepage: https://github.com/flatsurf/e-antic
+  repository: https://github.com/flatsurf/e-antic
+
+extra:
+  recipe-maintainers:
+    - saraedum
+    - videlec

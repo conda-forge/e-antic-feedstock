@@ -1,5 +1,3 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '11.0'
 MACOSX_SDK_VERSION:
 - '11.0'
 antic:
@@ -24,8 +22,6 @@ libboost_devel:
 - '1.88'
 libboost_headers:
 - '1.88'
-libeantic:
-- '2'
 libflint:
 - '2.9'
 - '3.0'
@@ -41,7 +37,6 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
 - 3.11.* *_cpython
 - 3.12.* *_cpython
 - 3.13.* *_cp313
