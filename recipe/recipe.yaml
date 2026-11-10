@@ -53,6 +53,9 @@ outputs:
           then: antic
         - if: libflint == '2.9'
           then: arb
+      run_exports:
+        # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
+        - ${{ pin_subpackage("libeantic") }}
     tests:
       - script:
           - if: linux or osx
@@ -65,9 +68,6 @@ outputs:
             then: test -f $PREFIX/lib/libeantic.dylib
           - if: osx
             then: test -f $PREFIX/lib/libeanticxx.dylib
-    run_exports:
-      # e-antic uses semantic versioning https://github.com/videlec/e-antic/issues/12
-      - ${{ pin_subpackage("libeantic") }}
   - package:
       name: pyeantic
     build:
