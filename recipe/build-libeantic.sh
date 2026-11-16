@@ -10,6 +10,11 @@ if [[ "$target_platform" == win* ]]; then
     CXXFLAGS="$CXXFLAGS -std=c++14"
 fi
 
+if [[ "${libflint}" == "3.1" ]]; then
+    # noreturn used by FLINT 3.1 headers is not a keyword in C23 so use C17
+    CFLAGS="$CFLAGS -std=gnu17"
+fi
+
 if [[ "${libflint}" == "3.2" ]]; then
     CPPFLAGS="$CPPFLAGS -DFLINT_TEST_CLEANUP=FLINT_TEST_CLEAR"
 fi
