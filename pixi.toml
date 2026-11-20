@@ -101,15 +101,15 @@ description = "Debug e-antic-feedstock with variant linux_aarch64_libflint3.4 di
 [feature.build.tasks."inspect-linux_aarch64_libflint3.4"]
 cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_libflint3.4.yaml"
 description = "List contents of e-antic-feedstock packages built for variant linux_aarch64_libflint3.4"
-[feature.build.tasks."build-linux_aarch64_libflint3.5"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_libflint3.5.yaml --target-platform linux-aarch64"
-description = "Build e-antic-feedstock with variant linux_aarch64_libflint3.5 directly (without setup scripts)"
-[feature.build.tasks."debug-linux_aarch64_libflint3.5"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_aarch64_libflint3.5.yaml --target-platform linux-aarch64"
-description = "Debug e-antic-feedstock with variant linux_aarch64_libflint3.5 directly (without setup scripts)"
-[feature.build.tasks."inspect-linux_aarch64_libflint3.5"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_libflint3.5.yaml"
-description = "List contents of e-antic-feedstock packages built for variant linux_aarch64_libflint3.5"
+[feature.build.tasks."build-linux_aarch64_libflint3.6"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_libflint3.6.yaml --target-platform linux-aarch64"
+description = "Build e-antic-feedstock with variant linux_aarch64_libflint3.6 directly (without setup scripts)"
+[feature.build.tasks."debug-linux_aarch64_libflint3.6"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_aarch64_libflint3.6.yaml --target-platform linux-aarch64"
+description = "Debug e-antic-feedstock with variant linux_aarch64_libflint3.6 directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_aarch64_libflint3.6"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_libflint3.6.yaml"
+description = "List contents of e-antic-feedstock packages built for variant linux_aarch64_libflint3.6"
 [feature.build.tasks."build-linux_ppc64le_libflint2.9"]
 cmd = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_libflint2.9.yaml --target-platform linux-ppc64le"
 description = "Build e-antic-feedstock with variant linux_ppc64le_libflint2.9 directly (without setup scripts)"
@@ -164,15 +164,15 @@ description = "Debug e-antic-feedstock with variant linux_ppc64le_libflint3.4 di
 [feature.build.tasks."inspect-linux_ppc64le_libflint3.4"]
 cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_libflint3.4.yaml"
 description = "List contents of e-antic-feedstock packages built for variant linux_ppc64le_libflint3.4"
-[feature.build.tasks."build-linux_ppc64le_libflint3.5"]
-cmd = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_libflint3.5.yaml --target-platform linux-ppc64le"
-description = "Build e-antic-feedstock with variant linux_ppc64le_libflint3.5 directly (without setup scripts)"
-[feature.build.tasks."debug-linux_ppc64le_libflint3.5"]
-cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_ppc64le_libflint3.5.yaml --target-platform linux-ppc64le"
-description = "Debug e-antic-feedstock with variant linux_ppc64le_libflint3.5 directly (without setup scripts)"
-[feature.build.tasks."inspect-linux_ppc64le_libflint3.5"]
-cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_libflint3.5.yaml"
-description = "List contents of e-antic-feedstock packages built for variant linux_ppc64le_libflint3.5"
+[feature.build.tasks."build-linux_ppc64le_libflint3.6"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_libflint3.6.yaml --target-platform linux-ppc64le"
+description = "Build e-antic-feedstock with variant linux_ppc64le_libflint3.6 directly (without setup scripts)"
+[feature.build.tasks."debug-linux_ppc64le_libflint3.6"]
+cmd = "rattler-build debug setup --recipe recipe -m .ci_support/linux_ppc64le_libflint3.6.yaml --target-platform linux-ppc64le"
+description = "Debug e-antic-feedstock with variant linux_ppc64le_libflint3.6 directly (without setup scripts)"
+[feature.build.tasks."inspect-linux_ppc64le_libflint3.6"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_libflint3.6.yaml"
+description = "List contents of e-antic-feedstock packages built for variant linux_ppc64le_libflint3.6"
 [feature.build.tasks."build-osx_64_"]
 cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_.yaml --target-platform osx-64"
 description = "Build e-antic-feedstock with variant osx_64_ directly (without setup scripts)"

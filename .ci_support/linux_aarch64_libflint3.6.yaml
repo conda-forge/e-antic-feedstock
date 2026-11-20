@@ -23,6 +23,6 @@ gmp:
 libboost_devel:
 - '1.88'
 libflint:
-- '3.5'
+- '3.6'
 target_platform:
 - linux-aarch64
