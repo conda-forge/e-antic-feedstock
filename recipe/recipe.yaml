@@ -16,7 +16,7 @@ source:
     - flint-3.6-const.patch
 
 build:
-  number: 5
+  number: 6
   # Upstream doesn't support MSVC yet.
   skip: win
 
