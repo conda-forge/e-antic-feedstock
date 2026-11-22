@@ -21,9 +21,9 @@ docker_image:
 gmp:
 - '6'
 libboost_devel:
-- '1.88'
+- '1.90'
 libboost_headers:
-- '1.88'
+- '1.90'
 libflint:
 - '2.9'
 - '3.0'
@@ -31,7 +31,7 @@ libflint:
 - '3.2'
 - '3.3'
 - '3.4'
-- '3.6'
+- '3.5'
 pin_run_as_build:
   python:
     min_pin: x.x
