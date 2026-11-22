@@ -21,8 +21,8 @@ docker_image:
 gmp:
 - '6'
 libboost_devel:
-- '1.88'
+- '1.90'
 libflint:
-- '3.6'
+- '3.5'
 target_platform:
 - linux-ppc64le
