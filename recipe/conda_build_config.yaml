@@ -9,7 +9,8 @@ cxx_compiler_version:      # [osx]
 # (for downstream testing) we built against several releases of FLINT (and not
 # just the latest from the pinning feedstock.)
 libflint:
-  - '3.5'  # currently, the one from the pinning feedstock has to come first, otherwise the first entry is skipped
+  - '3.6'  # currently, the one from the pinning feedstock has to come first, otherwise the first entry is skipped
+  - '3.5'
   - '2.9'
   - '3.0'
   - '3.1'
