@@ -32,6 +32,7 @@ libflint:
 - '3.3'
 - '3.4'
 - '3.5'
+- '3.6'
 pin_run_as_build:
   python:
     min_pin: x.x
